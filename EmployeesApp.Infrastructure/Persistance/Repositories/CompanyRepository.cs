@@ -15,10 +15,15 @@ public class CompanyRepository(ApplicationContext context) : ICompanyRepository
         context.Companies.Add(company);
     }
 
+
     // TODO: Added AsNoTracking() & Include()
     public async Task<Company[]> GetAllAsync() =>
         await context.Companies.AsNoTracking().Include(o => o.Employees).ToArrayAsync();
 
-    public async Task<Company?> GetByIdAsync(int id) => await context.Companies
-        .FindAsync(id);
+    public async Task<Company?> GetByIdAsync(int id)
+    {
+        return await context.Companies
+         .Include(c => c.Employees)
+         .SingleOrDefaultAsync(c => c.Id == id);
+    }
 }

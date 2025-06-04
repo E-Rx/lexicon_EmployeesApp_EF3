@@ -12,6 +12,11 @@ namespace EmployeesApp.Infrastructure.Persistance.Repositories
             context.Employees.Add(employee);
         }
 
+        public void DeleteById(Employee employee)
+        {
+            context.Employees.Remove(employee);
+        }
+
         // TODO: Added AsNoTracking() & Include()
         public async Task<Employee[]> GetAllAsync() =>
             await context.Employees.AsNoTracking().Include(o => o.Company).ToArrayAsync();

@@ -37,4 +37,8 @@ public class CompanyService(IUnitOfWork unitOfWork) : ICompanyService
             company;
     }
 
+    public async Task DeleteByIdAsync(int id)
+    {
+        await unitOfWork.DeleteAllAsync(id);
+    }
 }

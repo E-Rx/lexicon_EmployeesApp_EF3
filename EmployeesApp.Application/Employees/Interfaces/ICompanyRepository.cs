@@ -11,5 +11,4 @@ public interface ICompanyRepository
     void Add(Company company);
     Task<Company[]> GetAllAsync();
     Task<Company?> GetByIdAsync(int id);
-
 }

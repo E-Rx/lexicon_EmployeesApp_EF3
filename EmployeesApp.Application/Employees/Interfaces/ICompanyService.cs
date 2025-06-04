@@ -14,4 +14,6 @@ public interface ICompanyService
 
     Task<Company?> GetByIdAsync(int id);
 
+    Task DeleteByIdAsync(int id);
+
 }

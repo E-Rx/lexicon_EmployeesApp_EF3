@@ -11,4 +11,5 @@ public interface IUnitOfWork
     ICompanyRepository Companies { get; }
     IEmployeeRepository Employees { get; }
     Task PersistAllAsync();
+    Task DeleteAllAsync(int id);
 }

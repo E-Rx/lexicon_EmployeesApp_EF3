@@ -7,5 +7,6 @@ namespace EmployeesApp.Application.Employees.Interfaces
         void Add(Employee employee);
         Task<Employee[]> GetAllAsync();
         Task<Employee?> GetByIdAsync(int id);
+        void DeleteById(Employee employee);
     }
 }
