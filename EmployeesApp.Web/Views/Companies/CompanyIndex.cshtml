@@ -1,0 +1,14 @@
+﻿@model CompanyIndexVM
+
+@{
+    ViewBag.Title = "Companies";
+}
+
+<ul>
+    @foreach (var company in Model.CompaniesVMs)
+    {
+        <li>
+            <a asp-controller="Companies"  asp-route-id="@company.Id" ;">@company.CompanyName</a>
+        </li>
+    }
+</ul>
