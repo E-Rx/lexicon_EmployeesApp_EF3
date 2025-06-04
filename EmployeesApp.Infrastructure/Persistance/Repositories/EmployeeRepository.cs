@@ -7,10 +7,9 @@ namespace EmployeesApp.Infrastructure.Persistance.Repositories
     public class EmployeeRepository(ApplicationContext context) : IEmployeeRepository
     {
         // TODO: The interface has been updated as well
-        public async Task AddAsync(Employee employee)
+        public void Add(Employee employee)
         {
-            await context.Employees.AddAsync(employee);
-            await context.SaveChangesAsync(); // Inte glömma!
+            context.Employees.Add(employee);
         }
 
         // TODO: Added AsNoTracking() & Include()

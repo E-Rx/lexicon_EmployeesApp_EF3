@@ -14,5 +14,4 @@ public interface ICompanyService
 
     Task<Company?> GetByIdAsync(int id);
 
-    public bool CheckIsVIP(Company company);
 }

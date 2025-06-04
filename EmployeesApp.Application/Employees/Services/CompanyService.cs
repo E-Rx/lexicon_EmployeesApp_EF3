@@ -9,23 +9,32 @@ using System.Threading.Tasks;
 namespace EmployeesApp.Application.Employees.Services;
 public class CompanyService(IUnitOfWork unitOfWork) : ICompanyService
 {
-    public Task AddAsync(Company company)
+
+    public async Task AddAsync(Company company)
     {
-        throw new NotImplementedException();
+        company.CompanyName = ToInitalCapital(company.CompanyName);
+        company.City = company.City.ToLower();
+
+        unitOfWork.Companies.Add(company);
+        await unitOfWork.PersistAllAsync();
     }
 
-    public bool CheckIsVIP(Company company)
+    string ToInitalCapital(string s) => $"{s[..1].ToUpper()}{s[1..]}";
+
+
+    public async Task<Company[]> GetAllAsync()
     {
-        throw new NotImplementedException();
+        var employees = await unitOfWork.Companies.GetAllAsync();
+        return employees.OrderBy(e => e.City).ToArray();
     }
 
-    public Task<Company[]> GetAllAsync()
+    public async Task<Company?> GetByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        Company? company = await unitOfWork.Companies.GetByIdAsync(id);
+
+        return company is null ?
+            throw new ArgumentException($"Invalid parameter value: {id}", nameof(id)) :
+            company;
     }
 
-    public Task<Company?> GetByIdAsync(int id)
-    {
-        throw new NotImplementedException();
-    }
 }

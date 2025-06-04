@@ -11,10 +11,7 @@ public class UnitOfWork(ApplicationContext context, ICompanyRepository companyRe
     public ICompanyRepository Companies => companyRepository;
     public IEmployeeRepository Employees => employeeRepository;
 
-    public async Task PersistAllAsync()
-    {
 
+    public async Task PersistAllAsync() => await context.SaveChangesAsync();
 
-        await context.SaveChangesAsync();
-    }
 }

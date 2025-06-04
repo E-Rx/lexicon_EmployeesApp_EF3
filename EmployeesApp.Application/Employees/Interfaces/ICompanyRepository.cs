@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace EmployeesApp.Application.Employees.Interfaces;
 public interface ICompanyRepository
 {
-    Task AddAsync(Company company);
+    void Add(Company company);
     Task<Company[]> GetAllAsync();
     Task<Company?> GetByIdAsync(int id);
 
